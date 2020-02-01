@@ -1,0 +1,143 @@
+
+
+body{
+	margin: 0;
+	padding: 0;
+	line-height: 1.42857143;
+}
+.d1{
+	overflow: visible;
+	background-color: #222D3C;
+	height: 60px;
+	width:100%;
+	display: block;
+    padding: 0px 15px;
+}
+@media only screen and (max-width: 600px) {
+  .d1 {background: green;}
+}
+.d1 a{
+	float: left;
+	color: #f2f2f2;
+	text-align: center;
+	padding-left: 20px;
+	padding-right: 50px;
+	text-decoration: none;
+	font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+	font-size: 20px;
+	font-weight: bold;
+}
+.d1 span{
+	color: white;
+}
+.d1 div{
+	box-sizing: border-box;
+}
+.d2{
+	height: 100%;
+	width: 50px;;
+	position: fixed;
+	z-index: 1;
+	top: 60px;
+	left: 0;
+	background-color: #000000;
+	overflow-x: hidden;
+	transition: 0.5s;
+}
+
+.d2 a{
+	display: block;
+	padding: 11px 4px 11px 15px;
+	text-decoration: none;
+	color: #999999;
+	transition: 0.1s;
+	font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+	font-size: 15px;
+	white-space: nowrap;
+	cursor: pointer;
+}
+.fa{
+	font-size: 21px;
+	padding-right: 10px;
+}
+.d2 a:hover{
+	background-color: #111;
+	border-left= 1 solid;
+	border-left-color: red;
+}
+.active{
+	background-color: #337AB7;
+	color: white;
+}
+.d2 img{
+	width: 60px;
+	height: 60px;
+}
+#act{
+	color: white;
+}
+.sadmin{
+	float: right;
+	padding: .2em .6em .3em;
+	font-size: 75%;
+    font-weight: 700;
+    line-height: 1;
+	border-radius: 4px;
+}
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  padding-top: 100px; /* Location of the box */
+  left: 0;
+  top: 0;
+  width: 32%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: 	 	#D3D3D3; /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+.modal-content {
+  background-color:rgba(153, 153, 153, 0.3);
+	height:40%;
+  color:black;
+  margin: auto;
+	margin-top:40px;
+  padding: 20px;
+  border:none;
+  width: 30%;
+}
+@keyframes shake {
+  0% { transform: translate(1px, 1px) rotate(0deg); }
+  10% { transform: translate(-1px, -2px) rotate(-1deg); }
+  20% { transform: translate(-3px, 0px) rotate(1deg); }
+  30% { transform: translate(3px, 2px) rotate(0deg); }
+  40% { transform: translate(1px, -1px) rotate(1deg); }
+  50% { transform: translate(-1px, 2px) rotate(-1deg); }
+  60% { transform: translate(-3px, 1px) rotate(0deg); }
+  70% { transform: translate(3px, 1px) rotate(-1deg); }
+  80% { transform: translate(-1px, -1px) rotate(1deg); }
+}
+.applyshake
+{
+	animation:shake 0.5s;
+}
+img{
+	cursor: pointer;
+    width: 40px;
+    margin-left: 30px;
+    margin-right: 10px;
+	margin-top: 10px;
+    float: right;
+    border-radius: 50%;
+}
+.buttn
+{
+	border-radius:5px;
+	height:30px;
+	width:100px;
+	border:0.5px solid gray;
+	background:		 #8c8c8c;
+	position:relative;
+	color:white;
+}

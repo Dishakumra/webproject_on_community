@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
+  <title>CQ Homepage</title>
+
+    <style media="screen">
+      <% include partials/viewcss %>
+      .allSides
+      {
+        box-shadow: 0 0 50px rgba(0,0,0,0.6);
+        -moz-box-shadow: 0 0 50px rgba(0,0,0,0.6);
+        -webkit-box-shadow: 0 0 50px rgba(0,0,0,0.6);
+        -o-box-shadow: 0 0 50px rgba(0,0,0,0.6);
+      }
+      .main
+      {
+        width:40%;
+        border-color: black;
+        height:20px;
+        height: 91vh;
+        justify-content: center;
+        align-content: center;
+        align-items: center;
+        display: flex;
+        margin-top: 15px;
+        margin-left:300px;
+      }
+      input, .form-control
+      {
+        border-radius:10px;
+        height:30px;
+        width:400px;
+        padding-left:10px;
+        border:0.5px solid grey;
+        background:lightgrey;
+        color:black;
+
+      }
+      #submit, #clear
+      {
+        border-radius:5px;
+        height:30px;
+        width:100px;
+        border:0.5px solid gray;
+        background:blue;
+        color:black;
+
+      }
+
+
+      </style>
+
+    </head>
+    <body onload="getpic()">
+      <% include partials/outer %>
+        <div class="main allSides">
+          <div class="textbox">
+                    <h2>ADD USER</h2>
+              <center><input type="text" placeholder="Email" id="email"></center>
+              <br>
+              <center><input type="password" placeholder="Password" id="password"></center>
+              <br>
+              <center><input type="text" placeholder="Name" id="name"></center>
+              <br>
+              <!-- <center><input type="text" placeholder="Gender" id="gender"></center> -->
+              <br>
+              <center><input type="text" placeholder="City" id="city"></center>
+              <br>
+              <center><input type="text" placeholder="Phone No." id="phone"></center>
+              <!-- <br>
+              <center><input type="text" placeholder="DOB" id="dob"></center> -->
+              <br>
+              <label>ROLL:</label>
+              <select data-style="btn-info" name="roleoptions" class="form-control" id="role">
+                    <optgroup label="Select User Role">
+                      <option value="user">User</option>
+                        <option value="community manager">Community manager</option>
+                      <option value="admin">Admin</option>
+                    </optgroup>
+                </select><br>
+              <center><button class="button" id="submit">SUBMIT</button>
+              <button class="button" id="clear">CANCEL</button>
+            </center>
+         </div>
+        </div>
+        <script type="text/javascript">
+        <% include partials/viewjs %>
+        var usere=[];
+        function getpic()
+        {
+
+        	var xttp=new XMLHttpRequest();
+        	xttp.open("GET",'/getdata');
+        	xttp.setRequestHeader("Content-Type",'application/json');
+        	xttp.send();
+        	xttp.onreadystatechange=function()
+        	{
+        		if (this.readyState == 4 && this.status == 200) {
+        				usere=JSON.parse(this.responseText);
+        			var len=usere.length;
+        			var i=0;
+        					while(i<len)
+        					{
+        						var path=usere[i].photopath;
+
+
+        						 path="../"+path;
+        			 document.getElementById("barpic").src=path;
+        				i++;
+        			}
+        	}
+        }
+        }
+        var email=document.getElementById("email");
+        var password=document.getElementById("password");
+        var user=document.getElementById("name");
+      //  var gender=document.getElementById("gender");
+        var city=document.getElementById("city");
+        var phno=document.getElementById("phone");
+        //var dob=document.getElementById("dob");
+        var roll=document.getElementById("role");
+        document.getElementById("clear").onclick=function(){
+            location.replace("add-user.html");
+        }
+        document.getElementById("submit").onclick=function(){
+        if(email.value=='' ||password.value==''||user.value==''||city.value==''||phno.value=='')
+            alert("Fields can't be left empty");
+        else
+            {
+                var newobj=new  Object();
+                newobj.email=email.value;
+                newobj.password=password.value;
+                newobj.city=city.value;
+                //newobj.dob=dob.value;
+                newobj.phno=phno.value;
+                newobj.user=user.value;
+              //  newobj.gender=gender.value;
+                newobj.roll=roll.value;
+                var xhr=new XMLHttpRequest();
+                xhr.open("POST",'/adduser');
+                xhr.setRequestHeader("content-type","application/json");
+                xhr.send(JSON.stringify(newobj));
+                 xhr.onreadystatechange=function()
+            {
+                 if (this.readyState == 4 && this.status == 200) {
+                    if(this.responseText=="ADDED")
+                        alert("USER ADDED SUCCESSFULLY");
+                     else
+                         alert("Email already registered");
+            }
+            };
+
+            }
+        }</script>
+    </body>
+  </html>

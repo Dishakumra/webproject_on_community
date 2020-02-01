@@ -1,0 +1,902 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.css">
+
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.js"></script>
+   <!-- <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css">
+   <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"> -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+   <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+     <title>USER LIST</title>
+  <style media="screen">
+    <% include partials/viewcss %>
+    #d1
+    {
+      height:40px;
+      width:auto;
+      overflow: visible;
+      margin-top: 15px;
+      margin-left:90px;
+    }
+    #foot{
+      margin-left: 60px;
+    }
+    #d2
+    {
+      margin-right:10px;
+
+      width:auto;
+      overflow: visible;
+      margin-top: 15px;
+      margin-left:60px;
+      margin-right:10px;
+    }
+    .allSides
+    {
+      box-shadow: 0 0 50px rgba(0,0,0,0.6);
+      -moz-box-shadow: 0 0 50px rgba(0,0,0,0.6);
+      -webkit-box-shadow: 0 0 50px rgba(0,0,0,0.6);
+      -o-box-shadow: 0 0 50px rgba(0,0,0,0.6);
+    }
+    .form-horizontal .form-group {
+      margin-right: 15px;
+      margin-left: 15px;
+  }
+  .form-group {
+    margin-bottom: 15px;
+  }
+  .col-sm-2 {
+    width: 16.6667%;
+  }
+  .col-sm-10 {
+    width: 53.3333%;
+  }
+  #margin
+  {
+
+    margin-left: 20px;
+    padding-top: 10px;
+  }
+  #yes,yes1#
+    {
+       text-align: center;
+       margin-right:10px;
+       border: 0.5px solid green;
+       border-radius: 5px;
+       background:green;
+       width:50px;
+       height:30px;
+
+    }
+    #no,#no1
+    {
+       text-align: center;
+       margin-right:10px;
+       border: 0.5px solid red;
+       border-radius: 5px;
+       background:red;
+       width:50px;
+       height:30px;
+
+    }
+    .main
+    {
+      width:40%;
+      border-color: black;
+      height:20px;
+      height: 91vh;
+      justify-content: center;
+      align-content: center;
+      align-items: center;
+      display: flex;
+      margin-top: 15px;
+      margin-left:300px;
+    }
+    .main1
+   {
+     width:30%;
+     border-color: black;
+     height:auto;
+     justify-content: center;
+     border-radius: 15px;
+
+   }
+   .modal1
+ {
+   padding-top: 180px;
+
+ }
+    .modal {
+      display: none; /* Hidden by default */
+      position: fixed; /* Stay in place */
+      z-index: 1; /* Sit on top */
+      padding-top: 100px; /* Location of the box */
+      left: 0;
+      top: 0;
+      width: 100%; /* Full width */
+      height: 100%; /* Full height */
+      overflow: auto; /* Enable scroll if needed */
+      background-color: 	 	#D3D3D3; /* Fallback color */
+      background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+    }
+    .modal-content {
+  position: relative;
+  background-color: #fefefe;
+  margin: auto;
+  padding: 0;
+  border: 1px solid #888;
+  width: 80%;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+  -webkit-animation-name: animatetop;
+  -webkit-animation-duration: 0.4s;
+  animation-name: animatetop;
+  animation-duration: 0.4s
+}
+
+/* Add Animation */
+@-webkit-keyframes animatetop {
+  from {top:-300px; opacity:0}
+  to {top:0; opacity:1}
+}
+
+@keyframes animatetop {
+  from {top:-300px; opacity:0}
+  to {top:0; opacity:1}
+}
+
+.close {
+color: black;
+
+float: right;
+font-size: 28px;
+font-weight: bold;
+position: absolute;
+
+}
+
+.close:hover,
+.close:focus {
+color: #000;
+text-decoration: none;
+cursor: pointer;
+}
+.modal-header {
+
+padding: 2px 16px;
+background-color: #F3E9E7;
+color: black;
+
+
+
+}
+
+.modal-body {padding: 2px 16px;
+             background-color: #FDFBFB;
+           color:black;}
+
+.modal-footer {
+padding: 2px 16px;
+background-color: #F3E9E7;
+color: black;
+}
+
+    .upperleftbutton{
+      border-radius:5px;
+      height:30px;
+      width:120px;
+      border:0.5px solid gray;
+      background:black;
+      color:white;
+      margin-top: 15px;
+      margin-left:90px;
+      text-align: center;
+       margin-right:20px;
+       position:absolute;
+
+      }
+      .limitbutton{
+        border-radius:5px;
+        height:20px;
+        width:60px;
+        border:0.5px solid gray;
+        background:grey;
+        color:black;
+        text-align: center;
+         margin-right:20px;
+         position:absolute;
+
+        }
+        .mail{
+      display:inline-block;
+      background:none;
+      width: 30px;
+      height: 30px;
+      margin-right: 10px;
+      background:url('mail.jpeg');
+      background-size: cover;
+
+    }
+    .update{
+      display:inline-block;
+      background:none;
+      width: 30px;
+      height: 30px;
+      background:url('edit.jpeg');
+      background-size: cover;
+      margin-right: 10px;
+
+    }
+    .activate{
+      display:inline-block;
+      background:none;
+      width: 30px;
+      height: 30px;
+      background:url('tick.jpeg');
+      background-size: cover;
+      margin-right: 10px;
+
+    }
+    .deactive{
+     display:inline-block;
+     background:none;
+     width: 30px;
+     height: 30px;
+     background:url('wrong.jpeg');
+     background-size: cover;
+
+   }
+
+      .upperrightbutton{
+        border-radius:5px;
+        height:30px;
+        width:120px;
+        border:0.5px solid gray;
+        background:black;
+        color:white;
+        margin-top: 15px;
+        margin-left:40px;
+        text-align: center;
+      margin-right:20px;
+
+        }
+
+        #email
+        {
+          font-weight:bold;
+        }
+      .table{
+
+        align-items: center;
+        border:1px solid grey;
+        width:100%;
+
+      }
+      #btn1
+    {
+       text-align: center;
+       margin-right:10px;
+       border:0.5px solid gray;
+       border-radius: 5px;
+       background:lightgrey;
+
+    }
+    #btn2
+    {
+       margin-right:10px;
+       text-align: center;
+       border:0.5px solid gray;
+       background:lightgrey;
+       border-radius: 5px;
+
+    }
+    #next
+    {
+      margin-right:10px;
+      text-align: center;
+      border:0.5px solid gray;
+      background:lightgrey;
+      border-radius: 5px;
+
+    }
+    #prev
+    {
+      margin-right:10px;
+      text-align: center;
+      border:0.5px solid gray;
+      background:lightgrey;
+      border-radius: 5px;
+
+    }
+
+      .table tr:nth-child(even){background-color:white;}
+      .table tr:nth-child(odd){background-color:lightgrey;}
+      .table tr:hover{background-color:#dlcaca;}
+      td{
+        border:1px;
+      }
+      .head
+       {
+           background-color: lightgray;
+            height:40px;
+           text-align: justify;
+           width:auto;
+       }
+       .content
+       {
+           background-color: white;
+           width:auto;
+           text-align: center;
+           height:40px;
+           /* font-size: 20px;
+           width:250px; */
+           position:relative;
+       }
+
+
+  </style>
+
+</head>
+<body onload="getdetails()">
+  <% include partials/outer %>
+  <div>
+  <div class="upperleftbutton" style="float:left">User List</div>
+  <div style="float:right">
+    <button type="button" class="upperrightbutton" id="refresh">Refresh</button>
+    <select data-style="btn-info" name="roleoptions" class="upperrightbutton" id="status1">
+
+            <option value="all">All</option>
+              <option value="pending">Pending</option>
+            <option value="confirmed">Confirmed</option>
+
+      </select>
+
+      <select data-style="btn-info" name="roleoptions" class="upperrightbutton" id="role1">
+              <option value="all">All</option>
+              <option value="user">User</option>
+                <option value="community manger">community manager</option>
+              <option value="admin">admin</option>
+
+        </select>
+        </div>
+      </div>
+      <br><br><br>
+      <div id="d1">
+        <!-- <div style="float:left"><b>SHOW</b>
+
+        </div> -->
+
+        <div id="d2">
+        <table id="info" class="table">
+          <thead id="thead1">
+            <tr>
+              <td>UserName</td>
+              <td>Phone</td>
+              <td>City</td>
+              <td>Status</td>
+              <td>Role</td>
+              <td>Action</td>
+            </tr>
+          </thehead>
+          <tbody id="tbody1">
+
+
+
+
+        </table>
+        </div>
+        <div id="foot">
+        </div>
+        <div id="foot1" style="float:right">
+        </div><br><br>
+       <div id="mailpop" class="modal">
+        <div class="modal-content">
+          <div class="modal-header">
+       <span class="close">&times;</span>
+       <h2 style="float:right">Send Reminder Mail</h2>
+     </div>
+     <div class="modal-body">
+     <p>Some text in the Modal Body</p>
+     <p>Some other text...</p>
+   </div>
+        </div>
+      </div>
+      <div id="updatepop" class="modal">
+       <div class="w3-modal-content w3-animate-top w3-card-4 main allSides">
+         <header class="w3-container w3-teal">
+  <span onclick="document.getElementById('updatepop').style.display='none'" class="w3-button w3-display-topright">&times;</span>
+         <h3>update</h3>
+
+       </header>
+           <div class="form-horizontal"><br>
+            <div class="form-group">
+              <label class="control-label col-sm-2">Username:</label>
+              <div class="col-sm-10">
+                <input type="text" name="username" class="form-control" id="us2" placeholder="Username">
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="control-label col-sm-2">Phone:</label>
+              <div class="col-sm-10">
+                <input type="text" name="phone" class="form-control" id="ph2" placeholder="Phone" maxlength="15">
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="control-label col-sm-2">City:</label>
+              <div class="col-sm-10">
+                <input type="text" name="city" class="form-control" id="ct2" placeholder="City">
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="control-label col-sm-2">Status:</label>
+              <div class="col-sm-10">
+                <select class="form-control" id="st2" name="status">
+                  <option name="pending" value="pending">Pending</option>
+                  <option name="confirmed" value="confirmed">Confirmed</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="control-label col-sm-2">Role:</label>
+              <div class="col-sm-10">
+                <select class="form-control" id="rl2" name="role">
+                  <option name="user" value="user">User</option>
+                  <option name="admin" value="commuity manager">Community Builder</option>
+                  <option name="admin" value="admin">Admin</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="col-sm-offset-2 col-sm-10">
+                <button id="editupdate">Update</button>
+              </div>
+            </div>
+          </div>
+          <footer class="w3-container w3-teal">
+            <br>
+            <div class="form-group">
+              <div class="col-sm-offset-2 col-sm-10">
+                <button id="close" >Close</button>
+              </div>
+            </div>
+          </footer>
+         <hr>
+       </div>
+     </div>
+     <div id="deactivepop" class="modal modal1">
+       <div class="w3-modal-content w3-animate-top w3-card-4 main1 allSides" >
+         <div style="background-color:#f5f5f0; border-radius:10px">
+           <div id="margin">
+             <h3>DEACTIVATE USER?</h3>
+             <h5>Are you sure want to deactivate?</h5><br>
+           </div>
+           <center>
+             <button id="yes" >YES</button>
+             <button id="no" >No</button>
+           </center><br>
+         </div>
+       </div>
+     </div>
+     <div id="activepop" class="modal modal1">
+      <div class="w3-modal-content w3-animate-right w3-card-4 main1 allSides">
+        <div style="background-color:#f5f5f0; border-radius:10px">
+              <div id="margin">
+                <h3>ACTIVATE USER?</h3>
+                <h5>Are you sure want to activate?</h5><br>
+              </div>
+              <center>
+                <button id="yes1" >YES</button>
+                <button id="no1" >No</button>
+              </center><br>
+            </div>
+
+      </div>
+    </div>
+
+
+
+
+
+</body>
+<script type="text/javascript">
+     var details=[];
+    var refresh=document.getElementById('refresh');
+    var status1=document.getElementById('status1');
+    var role1=document.getElementById('role1');
+    var limit=document.getElementById('limit');
+    var search=document.getElementById('search');
+    var tableid=document.getElementById("info");
+    var foot=document.getElementById("foot");
+      var foot1=document.getElementById('foot1');
+      var yes1=document.getElementById('yes1');
+      var no1=document.getElementById('no1');
+      var tbody1=document.getElementById('tbody1');
+      var thead1=document.getElementById('thead1');
+      var yes=document.getElementById('yes');
+      var no=document.getElementById('no');
+
+    var i=0;
+ var page=1;
+ var g=0;
+ var length_limit=1;
+ var len=0;
+ var start=0;
+//  status1.addEventListener("change"function()
+// {
+//   getdetails();
+// });
+  function table_heading()
+  {
+    var heading=document.createElement("tr");
+    var Username_h=document.createElement("td");
+    Username_h.innerHTML="UserName";
+    var phone_h=document.createElement("td");
+    phone_h.innerHTML="Phone";
+    var city_h=document.createElement("td");
+    city_h.innerHTML="City";
+    var status_h=document.createElement("td");
+    status_h.innerHTML="Status";
+    var role_h=document.createElement("td");
+    role_h.innerHTML="Role";
+    var action_h=document.createElement("td");
+    action_h.innerHTML="Action";
+    heading.appendChild(Username_h);
+    heading.appendChild(phone_h);
+    heading.appendChild(city_h);
+    heading.appendChild(status_h);
+    heading.appendChild(role_h);
+    heading.appendChild(action_h);
+    heading.setAttribute("class","head");
+    thead1.appendChild(heading);
+    //tableid.appendChild(heading);
+  }
+  var usere=[];
+  function getpic()
+  {
+
+  	var xttp=new XMLHttpRequest();
+  	xttp.open("GET",'/getdata');
+  	xttp.setRequestHeader("Content-Type",'application/json');
+  	xttp.send();
+  	xttp.onreadystatechange=function()
+  	{
+  		if (this.readyState == 4 && this.status == 200) {
+  				usere=JSON.parse(this.responseText);
+  			var len=usere.length;
+  			var i=0;
+  					while(i<len)
+  					{
+  						var path=usere[i].photopath;
+
+
+  						 path="../"+path;
+  			 document.getElementById("barpic").src=path;
+  				i++;
+  			}
+  	}
+  }
+  }
+    function getdetails()
+    {
+      //table_heading();
+
+       getpic();
+      $(document).ready( function () {
+             var superuser;
+        $('#info').DataTable({
+
+                  "serverSide": true,
+                  "processing": true,
+                  "ajax": {
+                       "type": "POST",
+                       "url": "/data",
+                      "data":function(d){
+                          d.status=document.getElementById("status1").value;
+                          d.roll=document.getElementById("role1").value;
+                        //  d.active=active;
+                      },
+                      "complete":function(response){
+                     console.log(response);
+
+
+                  }
+                  },
+                 "columns":[
+                     {"data":"email"},
+                     {"data":"phno"},
+                     {"data":"city"},
+                     {"data":"status"},
+                     {"data":"roll"},
+                     {"data":"active"}
+                 ],
+
+                  columnDefs: [
+         {
+             targets:-1, // Start with the last
+             render: function ( data, type, row, meta ) {
+
+                      if(type=='display')
+                    {
+                    //       if("superuser"===row.roll)
+                    //           {
+                    //                data = '<div "><a href="#" id="mail" data-modal-target="#modal2" title="Mail"><img src="mail.jpeg" ></a> </div>';
+                    //           }
+                    //          else
+                    //              {
+                                     if(row.active=="1")
+                             data = '<div "><a href="#" id="mail" data-modal-target="#modal2" title="Mail" class="mail" ></a>  <a data-modal-target="#modal" id="update" title="Update Info" class="update" onclick=update(event.target.parentNode.parentNode.parentNode)></a>  <a href="#permission" class="activate" title="Activate"></a> </div>';
+                                     else if(row.active=="0")
+                                          data = '<div "><a href="#" id="mail" data-modal-target="#modal2" title="Mail" class="mail"></a>  <a data-modal-target="#modal" id="update" title="Update Info" class="update"></a>  <a href="#permission" class="deactive"title="Deactivate"></a> </div>';
+                                 //}
+                         }
+
+                 return data;
+             }
+         }
+     ]
+
+
+                  });
+
+
+     });
+
+
+
+
+
+
+    }
+
+function mailpop()
+{
+  document.getElementById("mailpop").style.display='block';
+}
+function update(tr)
+  {
+    var email2=document.getElementById("us2");
+    var phone2=document.getElementById("ph2");
+    var city2=document.getElementById("ct2");
+    var status2=document.getElementById("st2");
+    var role2=document.getElementById("rl2");
+    var editupdate=document.getElementById('editupdate');
+
+    var arr=tr.childNodes;
+    email2.value=arr[0].innerHTML;
+    phone2.value=arr[1].innerHTML;
+    city2.value=arr[2].innerHTML;
+    status2.value=arr[3].innerHTML;
+    role2.value=arr[4].innerHTML;
+
+    document.getElementById('updatepop').style.display='block';
+    document.getElementById("close").onclick=function()
+    {
+      document.getElementById("updatepop").style.display='none';
+    }
+
+    editupdate.onclick=function()
+    {
+      if(email2.value==""||phone2.value==""||city2.value==""||status2.value==""||role2.value=="")
+     alert("Fill all values");
+     else {
+
+      var req=new XMLHttpRequest();
+      req.addEventListener('load', function()
+      {
+        if(req.responseText=="UPDATED")
+        {
+          //getdetails();
+          document.getElementById("updatepop").style.display='none';
+
+        }
+        else {
+          alert("ERROR");
+          }
+
+      });
+      req.open("POST", "/update_details");
+      req.setRequestHeader('Content-Type','application/json');
+
+      req.send(JSON.stringify({'old':arr[0].innerHTML,'email':email2.value, 'phone':phone2.value,'city':city2.value,'status1':status2.value,'role1':role2.value}));
+      }
+    }
+
+
+
+  }
+function make_table(i)
+{
+
+  var row=document.createElement("tr");
+  var email=document.createElement("td");
+  var phno=document.createElement("td");
+  var city=document.createElement("td");
+  var status=document.createElement("td");
+  var roll=document.createElement("td");
+  var action=document.createElement("td");
+  var deactive=document.createElement("button");
+  deactive.setAttribute("id","deactiveid");
+  var mail=document.createElement("button");
+  //mail.innerHTML='<img src="mail.jpeg">';
+
+  var update=document.createElement("button");
+  //update.innerHTML='<img src="edit.jpeg">';
+  var active=document.createElement("button");
+  //active.innerHTML='<img src="tick.jpeg">';
+  mail.setAttribute("id","mailid");
+
+update.setAttribute("id","updateid");
+update.addEventListener("click",function()
+{
+  document.getElementById("updatepop").style.display="block";
+});
+active.setAttribute("id","activateid");
+
+mail.setAttribute("class","mail");
+update.setAttribute("class","update");
+active.setAttribute("class","activate");
+  email.setAttribute("id","email");
+  email.innerHTML=details[i].email;
+  phno.innerHTML=details[i].phno;
+  city.innerHTML=details[i].city;
+  status.innerHTML=details[i].status;
+  roll.innerHTML=details[i].roll;
+  action.appendChild(mail);
+    action.appendChild(update);
+      action.appendChild(active);
+      mail.addEventListener("click",function()
+    {
+      document.getElementById("mailpop").style.display='block';
+    });
+    active.addEventListener("click",function(event)
+{
+  document.getElementById("activepop").style.display='block';
+  yes1.onclick=function()
+  {
+    var xhttp=new XMLHttpRequest();
+    xhttp.addEventListener("load",function() {
+      if(xhttp.responseText=="CHANGED")
+      {
+        event.target.parentNode.removeChild(event.target);
+        deactive.setAttribute("id","deactiveid");
+        deactive.setAttribute("class","deactive");
+        action.appendChild(deactive);
+        document.getElementById("activepop").style.display='none';
+
+      }
+
+    });
+    xhttp.open('POST','/updateactive');
+    xhttp.setRequestHeader("Content-Type", "application/json");
+    xhttp.send(JSON.stringify({'user':details[i].user, 'active':details[i].active}));
+  }
+    no1.onclick=function()
+    {
+      document.getElementById("activepop").style.display='none';
+
+    }
+});
+deactive.addEventListener("click",function(event)
+{
+//  var yes=getElementById("yes");
+//  var no=getElementById("no");
+  document.getElementById("deactivepop").style.display='block';
+  yes.onclick=function()
+  {
+    var xhttp=new XMLHttpRequest();
+    xhttp.addEventListener("load",function() {
+      if(xhttp.responseText=="CHANGED")
+      {
+        event.target.parentNode.removeChild(event.target);
+        active.setAttribute("id","activeid");
+        active.setAttribute("class","active");
+        action.appendChild(active);
+        document.getElementById("deactivepop").style.display='none';
+
+      }
+
+    });
+    xhttp.open('POST','/updatedeactive');
+    xhttp.setRequestHeader("Content-Type", "application/json");
+    xhttp.send(JSON.stringify({'user':details[i].user, 'active':details[i].active}));
+  }
+    no.onclick=function()
+    {
+      document.getElementById("deactivepop").style.display='none';
+
+    }
+});
+      update.addEventListener("click",function()
+ {
+   document.getElementById("updatepop").style.display='block';
+   var email2=document.getElementById("us2");
+   var phone2=document.getElementById("ph2");
+   var city2=document.getElementById("ct2");
+   var status2=document.getElementById("st2");
+   var role2=document.getElementById("rl2");
+     var editupdate=document.getElementById('editupdate');
+   document.getElementById("us2").value=details[i].email;
+   document.getElementById("ph2").value=details[i].phno;
+   document.getElementById("ct2").value=details[i].city;
+   document.getElementById("st2").value=details[i].status;
+   document.getElementById("rl2").value=details[i].roll;
+   document.getElementById("close").onclick=function()
+   {
+     document.getElementById("updatepop").style.display='none';
+   }
+
+   editupdate.onclick=function()
+   {
+      if(email2.value==""||phone2.value==""||city2.value==""||status2.value==""||role2.value=="")
+     alert("Fill all values");
+     else {
+       var xhttp=new XMLHttpRequest();
+       xhttp.open('POST','/update_details');
+       xhttp.setRequestHeader("Content-Type", "application/json");
+       xhttp.send(JSON.stringify({'email':email2.value, 'phone':phone2.value,'city':city2.value,'status1':status2.value,'role1':role2.value,'user':details[i].user}));
+       xhttp.addEventListener("load",function() {
+       if(xhttp.responseText=="UPDATED")
+       {
+         //getdetails();
+         document.getElementById("updatepop").style.display='none';
+
+       }
+       else {
+         alert("ERROR");
+         }
+       });
+
+     }
+   }
+ });
+
+      row.appendChild(email);
+      row.appendChild(phno);
+      row.appendChild(city);
+      row.appendChild(status);
+      row.appendChild(roll);
+      row.appendChild(action);
+      tbody1.appendChild(row);
+
+}
+
+
+status1.onclick=function()
+{
+
+   tbody1.innerHTML="";
+
+  var t=$('#info').DataTable();
+            t.clear().draw();
+            t.destroy();
+  getdetails();
+
+}
+role1.onclick=function()
+{
+
+    tbody1.innerHTML="";
+  var t=$('#info').DataTable();
+            t.clear().draw();
+            t.destroy();
+
+
+   getdetails();
+
+}
+refresh.onclick=function()
+{
+
+  getdetails();
+}
+
+<% include partials/viewjs %>
+</script>
+</html>

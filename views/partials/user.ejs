@@ -1,0 +1,31 @@
+<body onload="getpic()">
+<div class="row">
+<div id="div1" class="d1 col-md-12 col-sm-12  col-lg-12">
+<a href="#">CQ</a>
+<span style="cursor:pointer;" onclick="funcNav()">&#9776;</span>
+<img src="logo.jpg" style="height: 40px;display: block" onclick="edituser()" id="barpic">
+<span class="sadmin" style="background-color: #5cb85c;margin-left:5px">admin</span>
+<span class="sadmin" style="background-color: #f0ad4e;">superadmin</span>
+</div>
+</div>
+<div id="div2" class="d2">
+<!--div><img src="1.png"></div-->
+<a href="#" onclick="funcNav()"><span class="fa"><i class="fa fa-bars"></i></span>CQ</a>
+<a class="active" href="#" id="act1" onclick="homepage()"><span class="fa"><i id="act" class="fa fa-home"></i></span>Home</a>
+<a href="#" onclick="commpanel()"><span class="fa"><i class="fa fa-list-alt"></i></span>Community List</a>
+<a href="#" onclick="switchtoadmin()"><span class="fa"><i class="fa fa-toggle-off"></i></span>Switch As admin</a>
+<a href="#" id="password1" onclick="changepassword()"><span class="fa"><i class="fa fa-lock"></i></span>Change Password</a>
+<a href="#" id="logout1" onclick="logout()" ><span class="fa"><i class="fa fa-sign-out"></i></span>Logout</a>
+</div>
+<div id="mymodal" class="modal">
+<div id="modal" class="modal-content">
+  <h2>Confirm Logout!</h2>
+  <br>
+  <p>Do You Really Want to Logout? </p>
+  <br>
+  <div>
+  <button id="yes" onclick="rollback()" class="buttn">YES</button> <button id="no" onclick="reset()" class="buttn"  style="float:right position:relative margin-left:10px">NO</button>
+  </div>
+  </div>
+  </div>
+  </body>

@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
+  <title>Change password</title>
+
+    <style media="screen">
+      <% include partials/viewcss %>
+      .allSides
+      {
+        box-shadow: 0 0 50px rgba(0,0,0,0.6);
+        -moz-box-shadow: 0 0 50px rgba(0,0,0,0.6);
+        -webkit-box-shadow: 0 0 50px rgba(0,0,0,0.6);
+        -o-box-shadow: 0 0 50px rgba(0,0,0,0.6);
+      }
+      .main
+      {
+        width:50%;
+        border-color: black;
+        height:20px;
+        height: 80vh;
+        justify-content: center;
+        align-content: center;
+        align-items: center;
+        display: flex;
+        margin-top: 25px;
+        margin-left:250px;
+      }
+      input, .form-control
+      {
+        border-radius:10px;
+        height:30px;
+        width:400px;
+        padding-left:10px;
+        border:0.5px solid grey;
+        background:lightgrey;
+        color:black;
+
+      }
+      #submit
+      {
+        border-radius:5px;
+        height:30px;
+        width:100px;
+        border:0.5px solid gray;
+        background:blue;
+        color:black;
+
+      }
+
+
+      </style>
+    </head>
+    <body onload="getpic()">
+      <%if (userd.roll=="admin" && userd.touser==0)
+      {%>
+       <% include partials/outer %> <%
+    }
+    else if(userd.touser==1){
+      %> <% include partials/user %> <%
+    }
+    else{%><%include partials/user %><%
+    }%>
+        <div class="main allSides">
+            <div>
+            <h2>Change Password</h2>
+            <br>
+            <br>
+            <h3>Old Password:</h3>
+            <center><input type="text"  id="old_pass"></center>
+            <br>
+            <br>
+            <h3>New Password</h3>
+            <center><input type="text"  id="new_pass"></center>
+            <br>
+            <center><button class="button" id="submit" onclick="changeit()">SUBMIT</button>
+        </div>
+        </div>
+    <script type="text/javascript">
+      <% include partials/viewjs %>
+      var usere=[];
+      function getpic()
+      {
+
+      	var xttp=new XMLHttpRequest();
+      	xttp.open("GET",'/getdata');
+      	xttp.setRequestHeader("Content-Type",'application/json');
+      	xttp.send();
+      	xttp.onreadystatechange=function()
+      	{
+      		if (this.readyState == 4 && this.status == 200) {
+      				usere=JSON.parse(this.responseText);
+      			var len=usere.length;
+      			var i=0;
+      					while(i<len)
+      					{
+      						var path=usere[i].photopath;
+
+
+      						 path="../"+path;
+      			 document.getElementById("barpic").src=path;
+      				i++;
+      			}
+      	}
+      }
+      }
+      var old_pass=document.getElementById("old_pass");
+      var new_pass=document.getElementById("new_pass");
+      function changeit()
+      {
+        if(old_pass.value==new_pass)
+        alert("New password should be different from old password");
+        else
+       {
+      var xhr=new XMLHttpRequest();
+      xhr.open("POST",'/change');
+      xhr.setRequestHeader("content-type","application/json");
+
+      xhr.onreadystatechange=function()
+ {
+      if (this.readyState == 4 && this.status == 200) {
+
+         if(this.responseText=="done")
+             alert("Password change SUCCESSFULLY");
+          else
+              alert("Write correct password");
+ }
+ };
+ xhr.send(JSON.stringify({'old_pass':old_pass.value,'new_pass':new_pass.value}));
+}
+}
+      </script>
+   </body>
+   </html>

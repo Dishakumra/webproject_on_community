@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1">
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+  <style media="screen"
+  type="text/css">
+  <% include partials/viewcss %>
+  .allSides
+  {
+    border-radius:5px;
+     box-shadow: 0 0 10px rgba(0,0,0,0.6);
+    -moz-box-shadow: 0 0 10px rgba(0,0,0,0.6);
+    -webkit-box-shadow: 0 0 10px rgba(0,0,0,0.6);
+    -o-box-shadow: 0 0 10px rgba(0,0,0,0.6);
+}
+#boxes
+      {
+          width:1000px;
+      }
+      #image
+      {
+        height:100px;
+        width:100px;
+        border:1px grey;
+        background:white;
+        color:black;
+        overflow: visible;
+
+      }
+      .textbox
+      {
+        height:80px;
+        width:300px;
+      }
+      table {
+        border-spacing: 5px;
+      }
+      th, td {
+        padding: 30px;
+        text-align:center;
+      }
+      .head
+       {
+           background-color: lightgray;
+           width:200px;
+           text-align: center;
+           height:40px;
+           font-size: 25px;
+           width:300px;
+       }
+       .content
+       {
+           background-color: white;
+           width:100%;
+           text-align: center;
+           height:40px;
+           font-size: 25px;
+           width:250px;
+           position:absolute;
+       }
+</style>
+  </head>
+  <body onload="retreive()">
+    <%if (userd.roll=="admin" && userd.touser==0)
+    {%>
+     <% include partials/outer %> <%
+  }
+  else if(userd.touser==1){
+    %> <% include partials/user %> <%
+  }
+  else{%><%include partials/user %><%
+  }%>
+
+
+    <div class="allSides" id="info" style="width:850px;height:600px;margin-left:130px;margin-top:30px; background-color:white">
+      <table id="boxes">
+        <tr>
+          <td>
+            <div id="image" class="allSides">
+              <img src="" id="pic" style="height: 108px; width:114px;display: block">
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td><div class="textbox allSides">
+              <div class="head"><p>Email</p></div>
+              <div class="content"><p id="email"></p></div>
+          </div></td>
+          <td><div class="textbox allSides">
+              <div class="head"><p>Gender</p></div>
+              <div class="content"><p id="gender"></p></div>
+          </div></td>
+        </tr>
+
+
+        <tr>
+          <td><div class="textbox allSides">
+              <div class="head"><p>Name</p></div>
+              <div class="content"><p id="user"></p></div>
+          </div></td>
+          <td><div class="textbox allSides">
+              <div class="head"><p>City</p></div>
+              <div class="content"><p id="city"></p></div>
+          </div></td>
+        </tr>
+
+
+
+        <tr>
+          <td><div class="textbox allSides">
+              <div class="head"><p>DOB</p></div>
+              <div class="content"><p id="dob"></p></div>
+          </div></td>
+          <td><div class="textbox allSides">
+              <div class="head"><p>PHONE NO</p></div>
+              <div class="content"><p id="phno"></p></div>
+          </div></td>
+        </tr>
+
+        </table>
+      </div>
+    </body>
+    <script type="text/javascript">
+     <% include partials/viewjs %>
+     var xttp=new XMLHttpRequest();
+     var user=[];
+      // retreive();
+     function retreive()
+     {
+       //console.log("kkk");
+     xttp.open("GET",'/getdata');
+     xttp.setRequestHeader("Content-Type",'application/json');
+     xttp.send();
+     xttp.onreadystatechange=function()
+     {
+       if (this.readyState == 4 && this.status == 200) {
+           user=JSON.parse(this.responseText);
+         var len=user.length;
+         var i=0;
+             while(i<len)
+             {
+           document.getElementById("user").innerHTML=user[i].user;
+          document.getElementById("dob").innerHTML=user[i].dob;
+           document.getElementById("phno").innerHTML=user[i].phno;
+           document.getElementById("email").innerHTML=user[i].email;
+           document.getElementById("city").innerHTML=user[i].city;
+           document.getElementById("gender").innerHTML=user[i].gender;
+           var path=user[i].photopath;
+          // path=path.slice(9,path.length);
+
+           	path="../"+path;
+           document.getElementById("pic").src=path;
+           console.log(user[i].photopath);
+          document.getElementById("barpic").src=path;
+           i++;
+         }
+     }
+   }
+ }
+    </script>
+</html>

@@ -1,0 +1,24 @@
+{
+  "name": "cq",
+  "version": "1.0.0",
+  "description": "cq p",
+  "main": "server.js",
+  "dependencies": {
+    "ejs": "^2.6.1",
+    "express": "^4.17.1",
+    "express-session": "^1.16.1",
+    "hbs": "^4.0.4",
+    "mongoose": "^5.5.11",
+    "multer": "^1.4.1",
+    "nodemailer": "^6.2.1",
+    "passport": "^0.4.0",
+    "passport-github": "^1.1.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "author": "",
+  "license": "ISC"
+}
